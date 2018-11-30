@@ -1,11 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Route, Switch, Redirect } from "react-router-dom";
+import Navbar from "./Navbar";
+import Signup from "./Auth/Signup";
+import Login from "./Auth/Login";
+import ProtectedRoute from "./Auth/ProtectedRoute";
 
-class App extends Component {
-  render() {
+import TodoList from "./Todos/TodoList";
+
+function App() {
     return (
-      <Admin />
-    );
-  }
+        <div className="app-wrapper">
+            <Navbar/>
+            <Switch>
+                <Route path="/login" component={Login}/>
+                <ProtectedRoute path="/admin" component={Dashboard}/>
+                <Route exact path="/" render={() => <Redirect to="/admin"/>}/>
+            </Switch>
+        </div>
+    )
 }
 
 export default App;
