@@ -28,6 +28,7 @@ export default class Animation extends Component {
     const header1 = this.leftSection.current.querySelector('#header1');
     const header2 = this.leftSection.current.querySelector('#header2');
     const description = this.leftSection.current.querySelector('h3');
+    const youtube = this.main.current.querySelector('.video-background');
     this.landingPage = new TimelineMax();
     this.landingPage
       .from(this.leftSection.current, 0.3, { x: -300 }, ease)
@@ -36,7 +37,8 @@ export default class Animation extends Component {
       .staggerFrom(links, 0.6, { autoAlpha: 0, y: 230, ease }, 0.15)
       .from(header1, 2, { autoAlpha: 0, x: 450, ease }, 0)
       .from(header2, 2, { autoAlpha: 0, x: 400, ease }, 0.25)
-      .from(description, 2, { autoAlpha: 0, y: 200, ease }, 0.35);
+      .from(description, 2, { autoAlpha: 0, y: 200, ease }, 0.35)
+      .from(youtube, 3, { autoAlpha: 0, ease }, '-= 1');
   }
 
   animateMainOut() {

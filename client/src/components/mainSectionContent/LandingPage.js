@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import YoutubeBackground from '../utility/YoutubeBackground';
 
 const Wrapper = styled.div`
   height: 100%;
@@ -9,6 +10,7 @@ const Wrapper = styled.div`
   align-items: center;
   color: #fff;
   padding-left: 10em;
+  position: relative;
   & h1 {
     font-size: 6em;
     margin-bottom: 0.5em;
@@ -32,6 +34,7 @@ export default function LandingPage() {
       <button>LEARN MORE</button>
       <h1>Talent</h1>
       <button>LEARN MORE</button>
+      <YoutubeBackground />
     </Wrapper>
   );
 }
