@@ -18,7 +18,7 @@ const Wrapper = styled.div`
     width: 100%;
     height: 100%;
     z-index: 1;
-    background: rgba(82, 36, 74, 0.9);
+    background: rgba(143, 93, 134, 0.8);
     @media (min-aspect-ratio: 16/9) {
       .video-foreground {
         height: 300%;
@@ -78,7 +78,7 @@ export default class YoutubeBackground extends Component {
       <Wrapper className="video-background">
         <Foreground className="video-foreground">
           <YouTube
-            videoId="719KI-i5dWQ"
+            videoId={this.props.videoId}
             opts={videoOptions}
             className="video-iframe"
             onReady={this._onReady}

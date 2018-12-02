@@ -12,11 +12,10 @@ const MainWrap = styled.div`
   right: 0;
   top: 0;
   z-index: 2;
-  background-color: #52244a;
+  background-color: rgba(234, 128, 252, 1);
 `;
 
 class Main extends Component {
-  componentDidMount() {}
   render() {
     return (
       <MainWrap ref={this.props.main}>

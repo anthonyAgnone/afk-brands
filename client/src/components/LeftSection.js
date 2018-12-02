@@ -16,6 +16,19 @@ const LeftWrap = styled.div`
   color: #fff;
   background-color: #352245;
   z-index: 3;
+  & button {
+    transition: all 0.3s ease;
+    background: transparent;
+    color: #fff;
+    position: absolute;
+    top: 1%;
+    right: 1%;
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: 2em;
+    border: none;
+    opacity: 0;
+  }
 `;
 
 class LeftSection extends Component {
@@ -31,6 +44,7 @@ class LeftSection extends Component {
             {({ match }) => <AboutUs props={match !== null} />}
           </Route>
         </Switch>
+        <button onClick={() => this.props.showMenu()}>Menu</button>
       </LeftWrap>
     );
   }
