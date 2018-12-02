@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { withAnimation } from './contexts/Animation';
+import { withRouter } from 'react-router-dom';
 
 const NavWrap = styled.div`
   position: absolute;
@@ -17,36 +17,67 @@ const NavWrap = styled.div`
     justify-content: space-around;
     width: 100%;
     height: 100%;
-    & a {
+    & button {
       color: #fff;
       font-weight: 700;
       font-size: 1.2em;
       transition: color 0.5s ease;
+      background-color: transparent;
+      border: none;
+      height: 1.2em;
+      cursor: pointer;
     }
   }
   & .reorder {
     flex-direction: column;
     align-items: center;
-    & a {
+    & button {
       color: #352245;
     }
   }
 `;
 
 class Navigation extends Component {
-  componentDidMount() {}
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+
+    this.handleAnimation = this.handleAnimation.bind(this);
+  }
+
+  handleAnimation(path) {
+    if (this.props.history.location.pathname === '/') {
+      this.props.animateMainOut();
+      this.props.animateLeftOut();
+      this.props.animateNavOut();
+      setTimeout(() => this.props.history.push({ pathname: `/${path}` }), 1000);
+    } else {
+      this.props.showMenu();
+      setTimeout(() => {
+        this.props.history.push({ pathname: `/${path}` });
+      }, 300);
+    }
+  }
+
   render() {
     return (
       <NavWrap ref={this.props.nav}>
         <nav>
-          <Link to="/about">ABOUT US</Link>
-          <Link to="/contact">CONTACT US</Link>
-          <Link to="/streams">STREAMS</Link>
-          <Link to="/affiliates">AFFILIATES</Link>
+          <button onClick={() => this.handleAnimation('about')}>
+            ABOUT US
+          </button>
+          <button onClick={() => this.handleAnimation('contact')}>
+            SERVICES
+          </button>
+          <button onClick={() => this.handleAnimation('talent')}>TALENT</button>
+          <button onClick={() => this.handleAnimation('affiliates')}>
+            SPONSORS
+          </button>
         </nav>
       </NavWrap>
     );
   }
 }
 
-export default withAnimation(Navigation);
+export default withRouter(withAnimation(Navigation));

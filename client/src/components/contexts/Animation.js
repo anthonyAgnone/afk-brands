@@ -6,7 +6,9 @@ const { Consumer, Provider } = createContext();
 export default class Animation extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      isMenu: false
+    };
     this.main = createRef();
     this.nav = createRef();
     this.brand = createRef();
@@ -16,6 +18,8 @@ export default class Animation extends Component {
     this.updateNav = null;
     this.leftAnimateOut = null;
     this.landingPage = null;
+    this.showMenuAnimation = null;
+    this.showMenu = this.showMenu.bind(this);
     this.animateMainOut = this.animateMainOut.bind(this);
     this.animateNavOut = this.animateNavOut.bind(this);
     this.animateLeftOut = this.animateLeftOut.bind(this);
@@ -24,7 +28,7 @@ export default class Animation extends Component {
 
   animateLoadingPage() {
     const ease = Power4.easeInOut;
-    const links = this.nav.current.querySelectorAll('nav a');
+    const links = this.nav.current.querySelectorAll('nav button');
     const header1 = this.leftSection.current.querySelector('#header1');
     const header2 = this.leftSection.current.querySelector('#header2');
     const description = this.leftSection.current.querySelector('h3');
@@ -82,7 +86,7 @@ export default class Animation extends Component {
   }
   animateNavOut() {
     let group = this.nav.current.querySelector('nav');
-    let nodes = this.nav.current.querySelectorAll('nav a');
+    let nodes = this.nav.current.querySelectorAll('nav button');
     let total = nodes.length;
     let ease = Power4.easeInOut;
     let boxes = [];
@@ -140,6 +144,72 @@ export default class Animation extends Component {
       });
   }
 
+  showMenu() {
+    this.showMenuAnimation = new TimelineLite();
+    this.setState(
+      prevState => ({
+        isMenu: !prevState.isMenu
+      }),
+      () => {
+        if (this.state.isMenu) {
+          this.showMenuAnimation
+            .to(this.main.current, 0.5, {
+              css: {
+                right: '-15vw'
+              },
+              ease: Power4.easeInOut
+            })
+            .to(
+              this.leftSection.current,
+              0.5,
+              {
+                css: {
+                  left: '-15vw'
+                },
+                ease: Power4.easeInOut
+              },
+              '-=.5'
+            )
+            .to(
+              this.nav.current,
+              0.5,
+              {
+                css: { zIndex: 100 }
+              },
+              '-=.2'
+            );
+        } else {
+          this.showMenuAnimation
+            .to(this.main.current, 0.5, {
+              css: {
+                right: 0
+              },
+              ease: Power4.easeInOut
+            })
+            .to(
+              this.leftSection.current,
+              0.5,
+              {
+                css: {
+                  left: 0
+                },
+                ease: Power4.easeInOut
+              },
+              '-=.5'
+            )
+            .to(
+              this.nav.current,
+              0.5,
+              {
+                css: { zIndex: -1 }
+              },
+              '-=.7'
+            );
+        }
+      }
+    );
+  }
+
   render() {
     const value = {
       main: this.main,
@@ -150,6 +220,7 @@ export default class Animation extends Component {
       animateNavOut: this.animateNavOut,
       animateLeftOut: this.animateLeftOut,
       animateLoadingPage: this.animateLoadingPage,
+      showMenu: this.showMenu,
       ...this.state
     };
     return <Provider value={value}>{this.props.children}</Provider>;

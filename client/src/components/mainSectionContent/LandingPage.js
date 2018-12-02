@@ -34,7 +34,7 @@ export default function LandingPage() {
       <button>LEARN MORE</button>
       <h1>Talent</h1>
       <button>LEARN MORE</button>
-      <YoutubeBackground />
+      <YoutubeBackground videoId="719KI-i5dWQ" />
     </Wrapper>
   );
 }
