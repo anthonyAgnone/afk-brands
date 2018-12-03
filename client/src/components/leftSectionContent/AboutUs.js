@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import MemberCard from './MemberCard';
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
@@ -18,16 +18,10 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
     color: #352245;
-  }
-`;
-
-const Card = styled.div`
-  background: #fff;
-  height: 250px;
-  padding: 5px;
-  & .cardHeader {
-    h3 {
-      width: 50%;
+    width: 100%;
+    img {
+      width: 100%;
+      height: auto;
     }
   }
 `;
@@ -43,7 +37,7 @@ export default function AboutUs() {
     {
       name: 'Anthony Agnone',
       image: 'https://via.placeholder.com/150',
-      description: 'Youtuber. Ivern God.',
+      description: 'Youtuber. Ivern God. ',
       links: [
         'http://github.com/anthonyAgnone',
         'http://anthony-agnone.com',
@@ -53,30 +47,25 @@ export default function AboutUs() {
     {
       name: 'Member',
       image: 'https://via.placeholder.com/150',
-      description: 'Youtuber. Ivern God.',
+      description: 'Developer',
       links: ['http://twitter.com', 'http://youtube.com']
     },
     {
       name: 'Member',
       image: 'https://via.placeholder.com/150',
-      description: 'Youtuber. Ivern God.',
+      description: 'Developer',
       links: ['http://twitter.com', 'http://youtube.com']
     },
     {
       name: 'Ted',
       image: 'https://via.placeholder.com/150',
-      description: 'Youtuber. Ivern God.',
+      description: 'Senior Developer. Bard.',
       links: ['http://twitter.com', 'http://youtube.com']
     }
   ];
 
-  const elements = teamMembers.map(member => (
-    <Card>
-      <div className="cardHeader">
-        <img src={member.image} alt="" />
-        <h3>{member.name}</h3>
-      </div>
-    </Card>
+  const elements = teamMembers.map((member, i) => (
+    <MemberCard key={i} member={member} />
   ));
   return (
     <Wrapper>
@@ -85,6 +74,7 @@ export default function AboutUs() {
         AND WHERE IT IS BASED OUT OF
       </h1>
       <h1>MEET OUR TEAM</h1>
+      {/* consider default base colors of apps for their hover/color */}
       <div className="teamMembers">{elements}</div>
     </Wrapper>
   );

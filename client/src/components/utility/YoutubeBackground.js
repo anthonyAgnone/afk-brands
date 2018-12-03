@@ -18,7 +18,7 @@ const Wrapper = styled.div`
     width: 100%;
     height: 100%;
     z-index: 1;
-    background: rgba(143, 93, 134, 0.8);
+    background: rgba(82, 36, 74, ${props => props.opacity});
     @media (min-aspect-ratio: 16/9) {
       .video-foreground {
         height: 300%;
@@ -75,7 +75,7 @@ export default class YoutubeBackground extends Component {
       }
     };
     return (
-      <Wrapper className="video-background">
+      <Wrapper opacity={this.props.opacity} className="video-background">
         <Foreground className="video-foreground">
           <YouTube
             videoId={this.props.videoId}

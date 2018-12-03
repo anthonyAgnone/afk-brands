@@ -71,7 +71,7 @@ class Navigation extends Component {
             SERVICES
           </button>
           <button onClick={() => this.handleAnimation('talent')}>TALENT</button>
-          <button onClick={() => this.handleAnimation('affiliates')}>
+          <button onClick={() => this.handleAnimation('sponsors')}>
             SPONSORS
           </button>
         </nav>

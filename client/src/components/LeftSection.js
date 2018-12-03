@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { withAnimation } from './contexts/Animation';
 import LandingPage from './leftSectionContent/LandingPage';
 import AboutUs from './leftSectionContent/AboutUs';
+import Sponsors from './leftSectionContent/Sponsors';
 
 const LeftWrap = styled.div`
   width: 50vw;
@@ -28,6 +29,12 @@ const LeftWrap = styled.div`
     font-size: 2em;
     border: none;
     opacity: 0;
+    cursor: pointer;
+    transition: all 0.3s easeInOut;
+  }
+  & button:hover {
+    color: #ea80fc;
+    font-size: 2.1em;
   }
 `;
 
@@ -42,6 +49,9 @@ class LeftSection extends Component {
           </Route>
           <Route path="/about">
             {({ match }) => <AboutUs props={match !== null} />}
+          </Route>
+          <Route path="/sponsors">
+            {({ match }) => <Sponsors props={match !== null} />}
           </Route>
         </Switch>
         <button onClick={() => this.props.showMenu()}>Menu</button>
