@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import LandingPage from './mainSectionContent/LandingPage';
 import AboutUs from './mainSectionContent/AboutUs';
+import Sponsors from './mainSectionContent/Sponsors';
 import styled from 'styled-components';
 import { withAnimation } from './contexts/Animation';
 
@@ -25,6 +26,9 @@ class Main extends Component {
           </Route>
           <Route path="/about">
             {({ match }) => <AboutUs props={match !== null} />}
+          </Route>
+          <Route path="/sponsors">
+            {({ match }) => <Sponsors props={match !== null} />}
           </Route>
         </Switch>
       </MainWrap>
