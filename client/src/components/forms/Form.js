@@ -1,6 +1,42 @@
 import React, { Component } from 'react';
 import { withForm } from '../contexts/FormContext';
+import styled from 'styled-components';
 
+const FormWrapper = styled.div`
+  width: 80%;
+  height: 40%;
+  display: flex;
+  justify-content: space-between;
+  & .leftForm {
+    width: 45%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  & .rightForm {
+    width: 45%;
+    height: 100%;
+    label {
+      margin-bottom: 2em;
+    }
+  }
+  & input {
+    border: none;
+    background-color: transparent;
+    border-bottom: 2px solid #fff;
+    color: #fff;
+    width: 100%;
+  }
+  & textarea {
+    background: transparent;
+    border: 2px solid #fff;
+    width: 100%;
+    height: 100%;
+    padding: 0.5em;
+    color: #fff;
+  }
+`;
 class Form extends Component {
   constructor(props) {
     super(props);
@@ -38,41 +74,53 @@ class Form extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            onChange={this.handleChange}
-            id="name"
-            placeholder="Name"
-          />
-          <fieldset id="context">
+      <FormWrapper onSubmit={this.handleSubmit}>
+        <div className="leftForm">
+          <div>
+            <label htmlFor="name">Name: </label>
+            <input
+              type="text"
+              name="name"
+              onChange={this.handleChange}
+              id="name"
+            />
+          </div>
+          <div>
+            <label htmlFor="email">Email: </label>
             <input
               type="email"
               name="email"
               onChange={this.handleChange}
               id="email"
-              placeholder="Email"
             />
+          </div>
+          <div>
+            <label htmlFor="phone">Phone: </label>
             <input
               type="tel"
               name="phone"
               onChange={this.handleChange}
               id="phone"
             />
-            {/* maybe discord and skype here */}
-          </fieldset>
-          <input
-            type="text"
-            name="message"
-            onChange={this.handleChange}
-            id="message"
-            placeholder="Message"
-          />
-          {/* make buttons not go to tope right. going to have to give specific id to  m enu item */}
-        </form>
-      </div>
+          </div>
+        </div>
+
+        <div className="rightForm">
+          <div className="messageSection">
+            <label htmlFor="message">Message: </label>
+            <textarea
+              rows="7"
+              name="message"
+              value={this.state.message}
+              onChange={this.handleChange}
+              id="message"
+            />
+          </div>
+        </div>
+        {/* maybe discord and skype here */}
+
+        {/* make buttons not go to tope right. going to have to give specific id to  m enu item */}
+      </FormWrapper>
     );
   }
 }

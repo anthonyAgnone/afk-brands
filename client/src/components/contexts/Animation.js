@@ -13,17 +13,20 @@ export default class Animation extends Component {
     this.nav = createRef();
     this.brand = createRef();
     this.leftSection = createRef();
+    this.preloader = createRef();
     this.landingAnimationOut = null;
     this.navAnimationOut = null;
     this.updateNav = null;
     this.leftAnimateOut = null;
     this.landingPage = null;
     this.showMenuAnimation = null;
+    this.preloadTween = null;
     this.showMenu = this.showMenu.bind(this);
     this.animateMainOut = this.animateMainOut.bind(this);
     this.animateNavOut = this.animateNavOut.bind(this);
     this.animateLeftOut = this.animateLeftOut.bind(this);
     this.animateLoadingPage = this.animateLoadingPage.bind(this);
+    this.preloadAnimation = this.preloadAnimation.bind(this);
   }
 
   animateLoadingPage() {
@@ -210,16 +213,27 @@ export default class Animation extends Component {
     );
   }
 
+  preloadAnimation() {
+    this.preloadTween = new TimelineLite();
+
+    this.preloadTween.to(this.preloader.current, 1, {
+      css: { left: '100vw' },
+      ease: Power4.easeInOut
+    });
+  }
+
   render() {
     const value = {
       main: this.main,
       nav: this.nav,
       brand: this.brand,
+      preloader: this.preloader,
       leftSection: this.leftSection,
       animateMainOut: this.animateMainOut,
       animateNavOut: this.animateNavOut,
       animateLeftOut: this.animateLeftOut,
       animateLoadingPage: this.animateLoadingPage,
+      preloadAnimation: this.preloadAnimation,
       showMenu: this.showMenu,
       ...this.state
     };
