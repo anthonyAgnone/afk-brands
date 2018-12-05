@@ -156,7 +156,7 @@ export default class Animation extends Component {
       () => {
         if (this.state.isMenu) {
           this.showMenuAnimation
-            .to(this.main.current, 0.5, {
+            .to(this.main.current, 0.6, {
               css: {
                 right: '-15vw'
               },
@@ -164,7 +164,7 @@ export default class Animation extends Component {
             })
             .to(
               this.leftSection.current,
-              0.5,
+              0.8,
               {
                 css: {
                   left: '-15vw'
@@ -183,23 +183,22 @@ export default class Animation extends Component {
             );
         } else {
           this.showMenuAnimation
-            .to(this.main.current, 0.9, {
+            .to(this.main.current, 0.8, {
               css: {
                 right: 0
               },
-              ease: Power4.easeInOut,
-              delay: 0.2
+              ease: Power4.easeInOut
             })
             .to(
               this.leftSection.current,
-              0.4,
+              1.1,
               {
                 css: {
                   left: 0
                 },
                 ease: Power4.easeInOut
               },
-              '-=.2'
+              '-=.6'
             )
             .to(
               this.nav.current,
@@ -207,7 +206,7 @@ export default class Animation extends Component {
               {
                 css: { zIndex: -1 }
               },
-              '-=.7'
+              '-=2'
             );
         }
       }

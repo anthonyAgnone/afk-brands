@@ -13,29 +13,59 @@ const FormWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    div {
+      position: relative;
+      height: 20%;
+      width: 100%;
+      input {
+        border: none;
+        background-color: transparent;
+        border-bottom: 2px solid #999;
+        color: #fff;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transition: all 0.6s ease;
+        :focus {
+          border-bottom: 2px solid #fff;
+        }
+        :focus + label {
+          letter-spacing: 0.2em;
+          font-size: 1.2em;
+          top: -15px;
+        }
+      }
+      label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: all 0.6s ease;
+      }
+    }
   }
   & .rightForm {
     width: 45%;
     height: 100%;
-    label {
-      margin-bottom: 2em;
+    div {
+      label {
+        margin-bottom: 2em;
+      }
+      textarea {
+        background: transparent;
+        border: 2px solid #999;
+        width: 100%;
+        height: 100%;
+        padding: 0.5em;
+        color: #fff;
+        transition: all .6s ease;
+      }
+      textarea:focus {
+        border: 2px solid #fff;
+      }
     }
   }
-  & input {
-    border: none;
-    background-color: transparent;
-    border-bottom: 2px solid #fff;
-    color: #fff;
-    width: 100%;
-  }
-  & textarea {
-    background: transparent;
-    border: 2px solid #fff;
-    width: 100%;
-    height: 100%;
-    padding: 0.5em;
-    color: #fff;
-  }
+  & 
 `;
 class Form extends Component {
   constructor(props) {
@@ -77,31 +107,31 @@ class Form extends Component {
       <FormWrapper onSubmit={this.handleSubmit}>
         <div className="leftForm">
           <div>
-            <label htmlFor="name">Name: </label>
             <input
               type="text"
               name="name"
               onChange={this.handleChange}
               id="name"
             />
+            <label htmlFor="name">Name: </label>
           </div>
           <div>
-            <label htmlFor="email">Email: </label>
             <input
               type="email"
               name="email"
               onChange={this.handleChange}
               id="email"
             />
+            <label htmlFor="email">Email: </label>
           </div>
           <div>
-            <label htmlFor="phone">Phone: </label>
             <input
               type="tel"
               name="phone"
               onChange={this.handleChange}
               id="phone"
             />
+            <label htmlFor="phone">Phone: </label>
           </div>
         </div>
 
