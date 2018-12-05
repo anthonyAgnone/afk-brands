@@ -61,10 +61,10 @@ export default class Animation extends Component {
         },
         'main'
       )
-      .to(this.main.current, 0.4, {
+      .to(this.main.current, 0.8, {
         css: { right: 0 },
         ease: Power4.easeInOut,
-        delay: 0.6
+        delay: 0.2
       });
   }
   animateLeftOut() {
@@ -183,22 +183,23 @@ export default class Animation extends Component {
             );
         } else {
           this.showMenuAnimation
-            .to(this.main.current, 0.5, {
+            .to(this.main.current, 0.9, {
               css: {
                 right: 0
               },
-              ease: Power4.easeInOut
+              ease: Power4.easeInOut,
+              delay: 0.2
             })
             .to(
               this.leftSection.current,
-              0.5,
+              0.4,
               {
                 css: {
                   left: 0
                 },
                 ease: Power4.easeInOut
               },
-              '-=.5'
+              '-=.2'
             )
             .to(
               this.nav.current,
