@@ -1,14 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from "react-router-dom";
-import { AdminContextProvider } from "./Contexts/AdminContext";
-import App from "./App";
+import { BrowserRouter } from 'react-router-dom';
+import AdminContext from './Contexts/AdminContext';
+import App from './App';
+import Bootstrap from './utility/Bootstrap';
 
 ReactDOM.render(
-    <AdminContextProvider>
-        <Router>
-            <App/>
-        </Router>
-    </AdminContextProvider>,
-    document.getElementById("root")
+  <BrowserRouter>
+    <AdminContext>
+      <Bootstrap>
+        <App />
+      </Bootstrap>
+    </AdminContext>
+  </BrowserRouter>,
+  document.getElementById('root')
 );
