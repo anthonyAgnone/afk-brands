@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withForm } from '../contexts/FormContext';
 import styled from 'styled-components';
 
-const FormWrapper = styled.div`
+const FormWrapper = styled.form`
   width: 80%;
   height: 40%;
   display: flex;
@@ -68,39 +68,14 @@ const FormWrapper = styled.div`
   & 
 `;
 class Form extends Component {
-  constructor(props) {
-    super(props);
+  handleChange = ({ target: { name, value } }) => {
+    this.props.updateInfo(name, value);
+  };
 
-    this.state = {
-      name: '',
-      userType: '',
-      message: '',
-      email: '',
-      phone: '',
-      discord: '',
-      skype: '',
-      date: ''
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange({ target: { name, value } }) {
-    this.setState({
-      [name]: value
-    });
-  }
-
-  handleSubmit(e) {
+  handleSubmit = e => {
     e.preventDefault();
-    this.props.handleSubmitForm(this.state);
-  }
-
-  componentWillMount() {
-    this.setState({
-      userType: this.props.user
-    });
-  }
+    this.props.handleSubmitForm(this.props.user);
+  };
 
   render() {
     return (
@@ -141,15 +116,14 @@ class Form extends Component {
             <textarea
               rows="7"
               name="message"
-              value={this.state.message}
+              value={this.props.message}
               onChange={this.handleChange}
               id="message"
             />
           </div>
         </div>
         {/* maybe discord and skype here */}
-
-        {/* make buttons not go to tope right. going to have to give specific id to  m enu item */}
+        <button>Reach Out!</button>
       </FormWrapper>
     );
   }
