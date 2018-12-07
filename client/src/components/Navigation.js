@@ -26,6 +26,10 @@ const NavWrap = styled.div`
       border: none;
       height: 1.2em;
       cursor: pointer;
+      transition: all 0.6s ease;
+    }
+    & button:hover {
+      letter-spacing: 0.2em;
     }
   }
   & .reorder {

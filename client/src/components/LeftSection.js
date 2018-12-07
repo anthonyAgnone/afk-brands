@@ -25,25 +25,6 @@ const LeftWrap = styled.div`
   color: #fff;
   background-color: #352245;
   z-index: 3;
-  & button {
-    transition: all 0.3s ease;
-    background: transparent;
-    color: #fff;
-    position: absolute;
-    top: 1%;
-    right: 1%;
-    text-transform: capitalize;
-    font-weight: bold;
-    font-size: 2em;
-    border: none;
-    opacity: 0;
-    cursor: pointer;
-    transition: all 0.3s easeInOut;
-  }
-  & button:hover {
-    color: #ea80fc;
-    font-size: 2.1em;
-  }
   & .fade-enter {
     opacity: 0;
   }
@@ -60,13 +41,35 @@ const LeftWrap = styled.div`
   }
 `;
 
+const MenuButton = styled.button`
+  transition: all 0.3s ease;
+  background: transparent;
+  color: #fff;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  text-transform: capitalize;
+  font-weight: bold;
+  font-size: 2em;
+  border: none;
+  opacity: 0;
+  cursor: pointer;
+  transition: all 0.3s easeInOut;
+  &:hover {
+    font-size: 2.1em;
+    letter-spacing: 0.2em;
+  }
+`;
+
 class LeftSection extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       x: 0,
-      y: 0
+      y: 0,
+      mouseX: 0,
+      mouseY: 0
     };
   }
 
@@ -123,7 +126,7 @@ class LeftSection extends Component {
             </Switch>
           </CSSTransition>
         </TransitionGroup>
-        <button onClick={() => this.props.showMenu()}>Menu</button>
+        <MenuButton onClick={() => this.props.showMenu()}>Menu</MenuButton>
       </LeftWrap>
     );
   }

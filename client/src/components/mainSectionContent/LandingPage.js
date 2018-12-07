@@ -24,6 +24,14 @@ const Wrapper = styled.div`
     border: none;
     padding: 1em 2em;
     margin-bottom: 3em;
+    box-shadow: 0.3em 0.3em 0 0 #fff, inset 0.3em 0.3em 0 0 #fff;
+    transition: 0.25s;
+  }
+  & button:hover,
+  & button:focus {
+    box-shadow: 0 0 0 0 #fff, inset 6em 3.5em 0 0 #fff;
+    color: #352245;
+    border-color: #fff;
   }
 `;
 
