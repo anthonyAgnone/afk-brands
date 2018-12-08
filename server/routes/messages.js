@@ -36,14 +36,14 @@ messageRouter
         next(err);
       } else {
         // Send the text message.
-        client.messages
-          .create({
-            to: '+17249440448',
-            from: process.env.TWILIO_NUMBER,
-            body: 'Hello World from Twilio!'
-          })
-          .then(message => console.log(message.sid))
-          .done();
+        // client.messages
+        //   .create({
+        //   to: 'xxxxxxxxx',
+        //   from: process.env.TWILIO_NUMBER,
+        //   body: 'Hello World from Twilio!'
+        // })
+        // .then(message => console.log(message.sid))
+        // .done();
       }
     });
   });
