@@ -11,7 +11,7 @@ function App() {
       <Navigation />
       <Switch>
         <Route path="/login" component={Login} />
-        {/* <ProtectedRoute path="/admin" component={Dashboard} /> */}
+        <ProtectedRoute path="/dashboard" component={Dashboard} />
         <Route exact path="/" render={() => <Redirect to="/login" />} />
       </Switch>
     </div>
