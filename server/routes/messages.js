@@ -5,6 +5,15 @@ const { Router } = express;
 const Message = require('../models/message');
 const messageRouter = Router();
 
+require('dotenv').config();
+
+const twilio = require('twilio');
+
+const client = new twilio(
+  process.env.TWILIO_ACCOUNT_SID,
+  process.env.TWILIO_AUTH_TOKEN
+);
+
 messageRouter
   .route('/')
   .get((req, res, next) => {
@@ -13,7 +22,9 @@ messageRouter
         res.status(400);
         next(err);
       } else {
-        res.status(200).send(messages);
+        Message.countDocuments({}, (err, count) => {
+          res.status(200).send({ count, messages });
+        });
       }
     });
   })
@@ -24,7 +35,15 @@ messageRouter
         res.status(400);
         next(err);
       } else {
-        res.status(201).send(savedMessage);
+        // Send the text message.
+        // client.messages
+        //   .create({
+        //   to: 'xxxxxxxxx',
+        //   from: process.env.TWILIO_NUMBER,
+        //   body: 'Hello World from Twilio!'
+        // })
+        // .then(message => console.log(message.sid))
+        // .done();
       }
     });
   });
@@ -35,7 +54,9 @@ messageRouter.route('/unread').get((req, res, next) => {
       res.status(400);
       next(err);
     } else {
-      res.status(200).send(messages);
+      Message.countDocuments({ read: false }, (err, count) => {
+        res.status(200).send({ count, messages });
+      });
     }
   });
 });
@@ -46,7 +67,9 @@ messageRouter.route('/talent').get((req, res, next) => {
       res.status(400);
       next(err);
     } else {
-      res.status(200).send(messages);
+      Message.countDocuments({ userType: 'talent' }, (err, count) => {
+        res.status(200).send({ count, messages });
+      });
     }
   });
 });
@@ -57,7 +80,9 @@ messageRouter.route('/sponsors').get((req, res, next) => {
       res.status(400);
       next(err);
     } else {
-      res.status(200).send(messages);
+      Message.countDocuments({ userType: 'sponsor' }, (err, count) => {
+        res.status(200).send({ count, messages });
+      });
     }
   });
 });

@@ -22,6 +22,7 @@ const H2 = styled.h2`
   color: #fff;
   padding-top: 3em;
   margin-bottom: 2em;
+  background: rgba(0, 0, 0, 0.2);
 `;
 
 export default function AboutUs() {

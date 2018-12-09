@@ -20,8 +20,12 @@ const H2 = styled.h2`
   position: relative;
   left: 30%;
   color: #fff;
-  padding-top: 3em;
-  margin-bottom: 2em;
+  margin-top: 3em;
+  padding: 1em;
+  background: rgba(0, 0, 0, 0.2);
+  :nth-child(3) {
+    margin-top: 2em;
+  }
 `;
 
 export default function AboutUs() {
@@ -48,7 +52,15 @@ export default function AboutUs() {
         ratione ab? Lorem ipsum dolor sit amet consectetur adipisicing elit.
         Doloremque perspiciatis perferendis eaque corrupti, nesciunt quos unde
         iusto, voluptatum sunt iste illum? Eum, quibusdam assumenda doloremque
-        facilis nihil temporibus ratione ab?
+        facilis nihil temporibus ratione ab? THIS SHOULD BE A BUNCH OF STUFF
+        ABOUT LIKE ALL THE STUFF Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Doloremque perspiciatis perferendis eaque corrupti,
+        nesciunt quos unde iusto, voluptatum sunt iste illum? Eum, quibusdam
+        assumenda doloremque facilis nihil temporibus ratione ab? Lorem ipsum
+        dolor sit amet consectetur adipisicing elit. Doloremque perspiciatis
+        perferendis eaque corrupti, nesciunt quos unde iusto, voluptatum sunt
+        iste illum? Eum, quibusdam assumenda doloremque facilis nihil temporibus
+        ratione ab?
       </H2>
       <YoutubeBackground opacity=".85" videoId="ZTHqRyPRqkk" />
     </Wrapper>
