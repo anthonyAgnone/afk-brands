@@ -48,6 +48,19 @@ messageRouter
     });
   });
 
+messageRouter
+  .route('/:id')
+  .put((req, res, next) => {
+    Message.findByIdAndUpdate(req.params.id, req.body, { new: true })
+      .then(editedMessage => res.status(200).send(editedMessage))
+      .catch(err => next(err))
+  })
+  .delete((req, res, next) => {
+    Message.findByIdAndDelete(req.params.id)
+      .then(() => res.status(200).send())
+      .catch(err => next(err))
+  });
+
 messageRouter.route('/unread').get((req, res, next) => {
   Message.find({ read: false }, (err, messages) => {
     if (err) {
