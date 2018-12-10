@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withForm } from '../contexts/FormContext';
+import Modal from './Modal';
 import styled from 'styled-components';
 
 const FormWrapper = styled.form`
@@ -82,6 +83,14 @@ const FormWrapper = styled.form`
   & 
 `;
 class Form extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showModal: false
+    };
+  }
+
   handleChange = ({ target: { name, value } }) => {
     this.props.updateInfo(name, value);
   };
@@ -89,11 +98,22 @@ class Form extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.handleSubmitForm(this.props.user);
+    this.handleModal();
+  };
+
+  handleModal = () => {
+    this.setState(prevState => ({
+      showModal: !prevState.showModal
+    }));
   };
 
   render() {
     return (
       <FormWrapper onSubmit={this.handleSubmit}>
+        <Modal
+          showModal={this.state.showModal}
+          handleModal={this.handleModal}
+        />
         <div className="leftForm">
           <div>
             <input
@@ -101,6 +121,7 @@ class Form extends Component {
               name="name"
               onChange={this.handleChange}
               id="name"
+              value={this.props.name}
             />
             <label htmlFor="name">Name: </label>
           </div>
@@ -110,6 +131,7 @@ class Form extends Component {
               name="email"
               onChange={this.handleChange}
               id="email"
+              value={this.props.email}
             />
             <label htmlFor="email">Email: </label>
           </div>
@@ -119,8 +141,9 @@ class Form extends Component {
               name="phone"
               onChange={this.handleChange}
               id="phone"
+              value={this.props.phone}
             />
-            <label htmlFor="phone">Phone: </label>
+            <label htmlFor="phone">Phone: (optional)</label>
           </div>
           <button>Reach Out!</button>
         </div>

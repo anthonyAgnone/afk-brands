@@ -25,16 +25,14 @@ export default class FormContext extends Component {
         userType
       },
       () => {
-        // this is where we will take the data and submit it to the server
-        console.log(this.state);
-        axios.post('/api/messages', this.state).catch(err =>
-          this.setState(
-            {
+        axios
+          .post('/api/messages', this.state)
+          .then(() => this.clearInputs())
+          .catch(err =>
+            this.setState({
               errors: err
-            },
-            () => console.log(this.state.errors)
-          )
-        );
+            })
+          );
       }
     );
   };
@@ -42,6 +40,19 @@ export default class FormContext extends Component {
   updateInfo = (name, value) => {
     this.setState({
       [name]: value
+    });
+  };
+
+  clearInputs = () => {
+    this.setState({
+      name: '',
+      message: '',
+      email: '',
+      phone: '',
+      discord: '',
+      skype: '',
+      date: '',
+      errors: ''
     });
   };
 

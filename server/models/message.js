@@ -18,7 +18,7 @@ const messageSchema = new Schema({
     type: String,
     required: true
   },
-  phoneNumber: String,
+  phone: String,
   discord: String,
   skype: String,
   read: {

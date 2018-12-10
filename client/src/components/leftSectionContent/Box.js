@@ -12,16 +12,19 @@ const Wrapper = styled.div`
   z-index: -1;
   &.clone {
     background-color: ${props => lighten(0.035, props.bg)};
-    clip-path: polygon(
-      0 0,
-      calc(${props => props.x} * 1% + calc(${props => props.y} * 0.5%)) 0,
-      calc(${props => props.x} * 1% + calc(${props => props.y} * -0.5%)) 100%,
-      0 100%
-    );
     transition: all 0.8s cubic-bezier(0.15, 0.84, 0.46, 0.93);
   }
 `;
 
 export default function Box({ bgColor, classname, maskX, maskY }) {
-  return <Wrapper x={maskX} y={maskY} className={classname} bg={bgColor} />;
+  return (
+    <Wrapper
+      style={{
+        clipPath: `polygon(0 0, ${maskX + maskY * 0.5}% 0, ${maskX +
+          maskY * -0.5}% 100%, 0 100%)`
+      }}
+      className={classname}
+      bg={bgColor}
+    />
+  );
 }
