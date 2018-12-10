@@ -22,35 +22,13 @@ const H2 = styled.h2`
   color: #fff;
   padding-top: 3em;
   margin-bottom: 2em;
-`;
-
-const ButtonDiv = styled.div`
-  width: 65%;
-  display: flex;
-  justify-content: center;
-  position: relative;
-  left: 30%;
-  & button {
-    background-color: #352245;
-    color: #fff;
-    border: none;
-    padding: 1em 2em;
-    margin-right: 3em;
-    box-shadow: 0.3em 0.3em 0 0 #fff, inset 0.3em 0.3em 0 0 #fff;
-    transition: 0.25s;
-  }
-  & button:hover,
-  & button:focus {
-    box-shadow: 0 0 0 0 #fff, inset 6em 3.5em 0 0 #fff;
-    color: #352245;
-    border-color: #fff;
-  }
+  background: rgba(0, 0, 0, 0.2);
 `;
 
 export default function AboutUs() {
   return (
     <Wrapper>
-      <H1>Who We Are</H1>
+      <H1>SPONSORS</H1>
       <H2>
         THIS SHOULD BE A BUNCH OF STUFF ABOUT LIKE ALL THE STUFF Lorem ipsum
         dolor sit amet consectetur adipisicing elit. Doloremque perspiciatis
@@ -61,10 +39,6 @@ export default function AboutUs() {
         iusto, voluptatum sunt iste illum? Eum, quibusdam assumenda doloremque
         facilis nihil temporibus ratione ab?
       </H2>
-      <ButtonDiv>
-        <button>Sponsors Visit Here</button>
-        <button>Talent Visit Here</button>
-      </ButtonDiv>
       <H2>
         THIS SHOULD BE A BUNCH OF STUFF ABOUT LIKE ALL THE STUFF Lorem ipsum
         dolor sit amet consectetur adipisicing elit. Doloremque perspiciatis
@@ -75,7 +49,7 @@ export default function AboutUs() {
         iusto, voluptatum sunt iste illum? Eum, quibusdam assumenda doloremque
         facilis nihil temporibus ratione ab?
       </H2>
-      <YoutubeBackground opacity=".95" videoId="6pLpC_wO5l0" />
+      <YoutubeBackground opacity="1" videoId="6pLpC_wO5l0" />
     </Wrapper>
   );
 }

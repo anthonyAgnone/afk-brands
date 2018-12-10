@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import styled from 'styled-components';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+
+import Box from './leftSectionContent/Box';
+
 import { withAnimation } from './contexts/Animation';
+import { withRouter } from 'react-router-dom';
+
 import LandingPage from './leftSectionContent/LandingPage';
 import AboutUs from './leftSectionContent/AboutUs';
+import Sponsors from './leftSectionContent/Sponsors';
+import Talent from './leftSectionContent/Talent';
+
+import styled from 'styled-components';
 
 const LeftWrap = styled.div`
   width: 50vw;
@@ -16,24 +25,111 @@ const LeftWrap = styled.div`
   color: #fff;
   background-color: #352245;
   z-index: 3;
+  & .fade-enter {
+    opacity: 0;
+  }
+  & .fade-enter-active {
+    opacity: 1;
+    transition: all 600ms ease-out;
+  }
+  & .fade-exit {
+    opacity: 1;
+  }
+  & .fade-exit-active {
+    opacity: 0;
+    transition: all 600ms ease-out;
+  }
+`;
+
+const MenuButton = styled.button`
+  transition: all 0.3s ease;
+  background: transparent;
+  color: #fff;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  text-transform: capitalize;
+  font-weight: bold;
+  font-size: 2em;
+  border: none;
+  opacity: 0;
+  cursor: pointer;
+  transition: all 0.3s easeInOut;
+  &:hover {
+    font-size: 2.1em;
+    letter-spacing: 0.2em;
+  }
 `;
 
 class LeftSection extends Component {
-  componentDidMount() {}
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      x: 0,
+      y: 0,
+      mouseX: 0,
+      mouseY: 0
+    };
+  }
+
+  handleMouseOut = () => {
+    this.setState({
+      x: 0,
+      y: 0
+    });
+  };
+
+  handleMouseMove = e => {
+    const height = this.props.leftSection.current.clientHeight;
+    const width = this.props.leftSection.current.clientWidth;
+    let xPos = Math.floor((e.nativeEvent.offsetX / width) * 100);
+    let yPos = Math.floor((e.nativeEvent.offsetY / height) * 100);
+    this.setState({
+      x: xPos,
+      y: yPos
+    });
+  };
+
   render() {
+    const bgColor = '#352245';
     return (
-      <LeftWrap ref={this.props.leftSection}>
-        <Switch>
-          <Route path="/" exact>
-            {({ match }) => <LandingPage props={match !== null} />}
-          </Route>
-          <Route path="/about">
-            {({ match }) => <AboutUs props={match !== null} />}
-          </Route>
-        </Switch>
+      <LeftWrap ref={this.props.leftSection} onMouseMove={this.handleMouseMove}>
+        <Box bgColor={bgColor} classname="main" />
+        <Box
+          maskX={this.state.x}
+          maskY={this.state.y}
+          bgColor={bgColor}
+          classname="clone"
+        />
+        <TransitionGroup component={null}>
+          <CSSTransition
+            in={true}
+            appear={false}
+            key={this.props.location.key}
+            classNames="fade"
+            timeout={{ enter: 600, exit: 600 }}
+          >
+            <Switch>
+              <Route path="/" exact>
+                {({ match }) => <LandingPage props={match !== null} />}
+              </Route>
+              <Route path="/about">
+                {({ match }) => <AboutUs props={match !== null} />}
+              </Route>
+              <Route path="/sponsors">
+                {({ match }) => <Sponsors props={match !== null} />}
+              </Route>
+              <Route path="/talent">
+                {({ match }) => <Talent props={match !== null} />}
+              </Route>
+            </Switch>
+          </CSSTransition>
+        </TransitionGroup>
+        <MenuButton onClick={() => this.props.showMenu()}>Menu</MenuButton>
       </LeftWrap>
     );
   }
 }
 
-export default withAnimation(LeftSection);
+export default withRouter(withAnimation(LeftSection));

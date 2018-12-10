@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withAnimation } from '../contexts/Animation';
 import styled from 'styled-components';
-
+import { withRouter } from 'react-router-dom';
 const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
@@ -16,11 +16,17 @@ const Wrapper = styled.div`
 
 class AnimationWrapper extends Component {
   componentDidMount() {
-    this.props.animateLoadingPage();
+    if (this.props.history.location.pathname === '/')
+      this.props.animateLoadingPage();
+    else {
+      this.props.animateMainOut();
+      this.props.animateLeftOut();
+      this.props.animateNavOut();
+    }
   }
   render() {
     return <Wrapper>{this.props.children}</Wrapper>;
   }
 }
 
-export default withAnimation(AnimationWrapper);
+export default withRouter(withAnimation(AnimationWrapper));
