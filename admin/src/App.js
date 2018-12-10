@@ -15,7 +15,6 @@ function App() {
         <Route exact path="/" render={() => <Redirect to="/login" />} />
       </Switch>
     </div>
-  );
-}
-
+  )
+  
 export default App;
