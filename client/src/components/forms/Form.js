@@ -107,6 +107,16 @@ class Form extends Component {
     }));
   };
 
+  clearInputs = () => {
+    this.setState(prevState => {
+      let newState = {};
+      for (let key in prevState) {
+        newState[key] = '';
+      }
+      return newState;
+    });
+  };
+
   render() {
     return (
       <FormWrapper onSubmit={this.handleSubmit}>
