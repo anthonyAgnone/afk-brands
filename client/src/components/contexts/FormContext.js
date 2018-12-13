@@ -19,7 +19,7 @@ export default class FormContext extends Component {
     };
   }
 
-  handleSubmitForm = userType => {
+  handleSubmitForm = (userType, cb) => {
     this.setState(
       {
         userType
@@ -27,7 +27,7 @@ export default class FormContext extends Component {
       () => {
         axios
           .post('/api/messages', this.state)
-          .then(() => this.clearInputs())
+          .then(() => cb)
           .catch(err =>
             this.setState({
               errors: err
