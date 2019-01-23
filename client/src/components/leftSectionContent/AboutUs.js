@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import MemberCard from './MemberCard';
+import React from 'react'
+import styled from 'styled-components'
+import MemberCard from './MemberCard'
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
@@ -10,8 +10,10 @@ const Wrapper = styled.div`
   top: -3em;
   left: -4%;
   & h1 {
-    max-width: 75%;
+    max-width: 85%;
     margin-bottom: 3em;
+    text-transform: uppercase;
+    font-size: 1.5rem;
   }
   & .teamMembers {
     width: 100%;
@@ -24,7 +26,7 @@ const Wrapper = styled.div`
       height: auto;
     }
   }
-`;
+`
 
 export default function AboutUs() {
   const teamMembers = [
@@ -38,11 +40,7 @@ export default function AboutUs() {
       name: 'Anthony Agnone',
       image: 'https://via.placeholder.com/150',
       description: 'Youtuber. Ivern God. ',
-      links: [
-        'http://github.com/anthonyAgnone',
-        'http://anthony-agnone.com',
-        'http://twitch.tv'
-      ]
+      links: ['http://github.com/anthonyAgnone', 'http://anthony-agnone.com', 'http://twitch.tv']
     },
     {
       name: 'Member',
@@ -62,20 +60,18 @@ export default function AboutUs() {
       description: 'Senior Developer. Bard.',
       links: ['http://twitter.com', 'http://youtube.com']
     }
-  ];
+  ]
 
-  const elements = teamMembers.map((member, i) => (
-    <MemberCard key={i} member={member} />
-  ));
+  const elements = teamMembers.map((member, i) => <MemberCard key={i} member={member} />)
   return (
     <Wrapper>
       <h1>
-        THIS SHOULD PROBABLY BE A PARAGRAPH ABOUT WHAT THE GOALS OF THE SITE ARE
-        AND WHERE IT IS BASED OUT OF
+        AFK is on a mission to empower top content creators and streamers to achieve their long-term goals and brands to
+        find the talent to fulfill their vision.
       </h1>
       <h1>MEET OUR TEAM</h1>
       {/* consider default base colors of apps for their hover/color */}
       <div className="teamMembers">{elements}</div>
     </Wrapper>
-  );
+  )
 }

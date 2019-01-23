@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import React, { Component } from 'react'
+import { Route, Switch } from 'react-router-dom'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
-import Box from './leftSectionContent/Box';
+import Box from './leftSectionContent/Box'
 
-import { withAnimation } from './contexts/Animation';
-import { withRouter } from 'react-router-dom';
+import { withAnimation } from './contexts/Animation'
+import { withRouter } from 'react-router-dom'
 
-import LandingPage from './leftSectionContent/LandingPage';
-import AboutUs from './leftSectionContent/AboutUs';
-import Sponsors from './leftSectionContent/Sponsors';
-import Talent from './leftSectionContent/Talent';
+import LandingPage from './leftSectionContent/LandingPage'
+import AboutUs from './leftSectionContent/AboutUs'
+import Sponsors from './leftSectionContent/Sponsors'
+import Talent from './leftSectionContent/Talent'
 
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const LeftWrap = styled.div`
   width: 50vw;
@@ -39,7 +39,7 @@ const LeftWrap = styled.div`
     opacity: 0;
     transition: all 600ms ease-out;
   }
-`;
+`
 
 const MenuButton = styled.button`
   transition: all 0.3s ease;
@@ -59,49 +59,44 @@ const MenuButton = styled.button`
     font-size: 2.1em;
     letter-spacing: 0.2em;
   }
-`;
+`
 
 class LeftSection extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       x: 0,
       y: 0,
       mouseX: 0,
       mouseY: 0
-    };
+    }
   }
 
   handleMouseOut = () => {
     this.setState({
       x: 0,
       y: 0
-    });
-  };
+    })
+  }
 
   handleMouseMove = e => {
-    const height = this.props.leftSection.current.clientHeight;
-    const width = this.props.leftSection.current.clientWidth;
-    let xPos = Math.floor((e.nativeEvent.offsetX / width) * 100);
-    let yPos = Math.floor((e.nativeEvent.offsetY / height) * 100);
+    const height = this.props.leftSection.current.clientHeight
+    const width = this.props.leftSection.current.clientWidth
+    let xPos = Math.floor((e.nativeEvent.offsetX / width) * 100)
+    let yPos = Math.floor((e.nativeEvent.offsetY / height) * 100)
     this.setState({
       x: xPos,
       y: yPos
-    });
-  };
+    })
+  }
 
   render() {
-    const bgColor = '#352245';
+    const bgColor = '#352245'
     return (
       <LeftWrap ref={this.props.leftSection} onMouseMove={this.handleMouseMove}>
         <Box bgColor={bgColor} classname="main" />
-        <Box
-          maskX={this.state.x}
-          maskY={this.state.y}
-          bgColor={bgColor}
-          classname="clone"
-        />
+        <Box border maskX={this.state.x} maskY={this.state.y} bgColor={bgColor} classname="clone" />
         <TransitionGroup component={null}>
           <CSSTransition
             in={true}
@@ -114,22 +109,16 @@ class LeftSection extends Component {
               <Route path="/" exact>
                 {({ match }) => <LandingPage props={match !== null} />}
               </Route>
-              <Route path="/about">
-                {({ match }) => <AboutUs props={match !== null} />}
-              </Route>
-              <Route path="/sponsors">
-                {({ match }) => <Sponsors props={match !== null} />}
-              </Route>
-              <Route path="/talent">
-                {({ match }) => <Talent props={match !== null} />}
-              </Route>
+              <Route path="/about">{({ match }) => <AboutUs props={match !== null} />}</Route>
+              <Route path="/sponsors">{({ match }) => <Sponsors props={match !== null} />}</Route>
+              <Route path="/talent">{({ match }) => <Talent props={match !== null} />}</Route>
             </Switch>
           </CSSTransition>
         </TransitionGroup>
         <MenuButton onClick={() => this.props.showMenu()}>Menu</MenuButton>
       </LeftWrap>
-    );
+    )
   }
 }
 
-export default withRouter(withAnimation(LeftSection));
+export default withRouter(withAnimation(LeftSection))

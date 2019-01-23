@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import YouTube from 'react-youtube';
-import styled from 'styled-components';
+import React, { Component } from 'react'
+import YouTube from 'react-youtube'
+import styled from 'styled-components'
 
 const Wrapper = styled.div`
   position: absolute;
@@ -32,7 +32,7 @@ const Wrapper = styled.div`
       }
     }
   }
-`;
+`
 
 const Foreground = styled.div`
   position: absolute;
@@ -50,16 +50,16 @@ const Foreground = styled.div`
     height: 200vh;
     pointer-events: none;
   }
-`;
+`
 
 export default class YoutubeBackground extends Component {
   _onReady(event) {
     // access to player in all event handlers via event.target
-    event.target.mute();
+    event.target.mute()
   }
 
   _onEnd(event) {
-    event.target.playVideo();
+    event.target.playVideo()
   }
   render() {
     const videoOptions = {
@@ -71,9 +71,10 @@ export default class YoutubeBackground extends Component {
         disablekb: 1,
         fs: 0,
         iv_load_policy: 3,
-        loop: 1
+        loop: 1,
+        frameborder: 0
       }
-    };
+    }
     return (
       <Wrapper opacity={this.props.opacity} className="video-background">
         <Foreground className="video-foreground">
@@ -86,6 +87,6 @@ export default class YoutubeBackground extends Component {
           />
         </Foreground>
       </Wrapper>
-    );
+    )
   }
 }

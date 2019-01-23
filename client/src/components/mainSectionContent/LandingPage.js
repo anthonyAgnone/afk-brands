@@ -1,6 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-import YoutubeBackground from '../utility/YoutubeBackground';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+import YoutubeBackground from '../utility/YoutubeBackground'
 
 const Wrapper = styled.div`
   height: 100%;
@@ -26,6 +27,7 @@ const Wrapper = styled.div`
     margin-bottom: 3em;
     box-shadow: 0.3em 0.3em 0 0 #fff, inset 0.3em 0.3em 0 0 #fff;
     transition: 0.25s;
+    cursor: pointer;
   }
   & button:hover,
   & button:focus {
@@ -33,7 +35,15 @@ const Wrapper = styled.div`
     color: #352245;
     border-color: #fff;
   }
-`;
+`
+
+const WrappedLink = (destination, content) => {
+  return (
+    <Link to={destination}>
+      <button type="button">{content}</button>
+    </Link>
+  )
+}
 
 export default function LandingPage() {
   return (
@@ -41,8 +51,8 @@ export default function LandingPage() {
       <h1>Brands</h1>
       <button>LEARN MORE</button>
       <h1>Talent</h1>
-      <button>LEARN MORE</button>
-      <YoutubeBackground opacity="0.8" videoId="719KI-i5dWQ" />
+      {WrappedLink('/talent', 'LEARN MORE')}
+      <YoutubeBackground opacity="0.8" videoId="BBXKBB67FcY" />
     </Wrapper>
-  );
+  )
 }

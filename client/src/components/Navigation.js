@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import { withAnimation } from './contexts/Animation';
-import { withRouter } from 'react-router-dom';
+import React, { Component } from 'react'
+import styled from 'styled-components'
+import { withAnimation } from './contexts/Animation'
+import { withRouter } from 'react-router-dom'
 
 const NavWrap = styled.div`
   position: absolute;
-  left: 3em;
+  left: 2.5em;
   top: 78%;
   transform: translate(0, -50%);
   width: 35.66667%;
@@ -36,31 +36,32 @@ const NavWrap = styled.div`
     flex-direction: column;
     align-items: center;
     & button {
-      color: #352245;
+      transition: all 0.3s ease;
+      color: #fff;
     }
   }
-`;
+`
 
 class Navigation extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.state = {};
+    this.state = {}
 
-    this.handleAnimation = this.handleAnimation.bind(this);
+    this.handleAnimation = this.handleAnimation.bind(this)
   }
 
   handleAnimation(path) {
     if (this.props.history.location.pathname === '/') {
-      this.props.animateMainOut();
-      this.props.animateLeftOut();
-      this.props.animateNavOut();
-      setTimeout(() => this.props.history.push({ pathname: `/${path}` }), 1000);
+      this.props.animateMainOut()
+      this.props.animateLeftOut()
+      this.props.animateNavOut()
+      setTimeout(() => this.props.history.push({ pathname: `/${path}` }), 1000)
     } else {
-      this.props.showMenu();
+      this.props.showMenu()
       setTimeout(() => {
-        this.props.history.push({ pathname: `/${path}` });
-      }, 300);
+        this.props.history.push({ pathname: `/${path}` })
+      }, 300)
     }
   }
 
@@ -68,20 +69,14 @@ class Navigation extends Component {
     return (
       <NavWrap ref={this.props.nav}>
         <nav>
-          <button onClick={() => this.handleAnimation('about')}>
-            ABOUT US
-          </button>
-          <button onClick={() => this.handleAnimation('contact')}>
-            SERVICES
-          </button>
+          <button onClick={() => this.handleAnimation('about')}>ABOUT US</button>
+          <button onClick={() => this.handleAnimation('contact')}>SUCCESS STORIES</button>
           <button onClick={() => this.handleAnimation('talent')}>TALENT</button>
-          <button onClick={() => this.handleAnimation('sponsors')}>
-            SPONSORS
-          </button>
+          <button onClick={() => this.handleAnimation('sponsors')}>SPONSORS</button>
         </nav>
       </NavWrap>
-    );
+    )
   }
 }
 
-export default withRouter(withAnimation(Navigation));
+export default withRouter(withAnimation(Navigation))

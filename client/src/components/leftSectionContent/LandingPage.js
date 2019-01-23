@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
 const Wrapper = styled.div`
   height: 100%;
@@ -14,21 +14,19 @@ const Wrapper = styled.div`
     font-weight: 400;
   }
   & h3 {
+    text-transform: uppercase;
     padding-left: 1em;
     max-width: 75%;
   }
-`;
+`
 export default function LandingPage() {
   return (
     <Wrapper>
       <h1>
-        <span id="header1">SLOGAN </span>
-        <span id="header2">GOES HERE</span>
+        <span id="header1">LET'S GO </span>
+        <span id="header2">AFK!</span>
       </h1>
-      <h3>
-        DESCRIPTION OF WHAT THE SITE DOES HERE WHERE THERE'S A DECENT AMOUNT OF
-        INFORMATION TO GIVE AN IDEA OF WHAT THE SITE DOES THIS IS FILLER
-      </h3>
+      <h3>We connect the best gaming content creators and streamers to the most exciting sponsorship opportunities.</h3>
     </Wrapper>
-  );
+  )
 }
